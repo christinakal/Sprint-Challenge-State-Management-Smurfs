@@ -3,6 +3,8 @@ import "./App.css";
 import { connect } from "react-redux";
 import { getData } from "../actions/action";
 
+import HomePage from "./HomePage";
+
 const App = props => {
   return (
     <div className="App">
@@ -11,6 +13,7 @@ const App = props => {
         Smurf.
       </h2>
       <button onClick={props.getData}>Click to get tha Smurf's!</button>
+      <HomePage />
     </div>
   );
 };

@@ -1,6 +1,7 @@
 const initialState = {
   data: [],
   isFetching: false,
+  isDeleting: false,
   error: ""
 };
 
@@ -22,6 +23,29 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isFetching: false,
+        error: action.payload
+      };
+    case "POST_DATA":
+      return {
+        ...state,
+        data: [...state.data, action.payload]
+      };
+    case "DELETE_START":
+      return {
+        ...state,
+        isDeleting: true,
+        error: null
+      };
+    case "DELETE_SUCCESS":
+      return {
+        ...state,
+        data: [...action.payload],
+        isDeleting: false
+      };
+    case "DELETE_ERROR":
+      return {
+        ...state,
+        isDeleting: false,
         error: action.payload
       };
     default:
