@@ -1,14 +1,32 @@
 const initialState = {
-    data: [],
-    isFetching: false,
-    error: ''
-}
+  data: [],
+  isFetching: false,
+  error: ""
+};
 
 const reducer = (state = initialState, action) => {
-    switch (action.type) {
-        default:
-            return state
-    }
-}
+  switch (action.type) {
+    case "FETCH_DATA_START":
+      return {
+        ...state,
+        isFetching: true
+      };
+    case "FETCH_DATA_SUCCESS":
+      return {
+        ...state,
+        data: action.payload,
+        isFetching: false,
+        error: ""
+      };
+    case "FETCH_DATA_FAILURE":
+      return {
+        ...state,
+        isFetching: false,
+        error: action.payload
+      };
+    default:
+      return state;
+  }
+};
 
-export default reducer
+export default reducer;
